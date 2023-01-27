@@ -18,7 +18,7 @@ function App() {
 
   let interval = setInterval(() => {
     checkFinished()
-  }, 1000);
+  }, 700);
 
   function getRandomNumberBetween(min,max){
     return Math.floor(Math.random()*(max-min+1)+min);
@@ -51,6 +51,9 @@ function App() {
   let otvorenaNula = async(kocka) => {
     let otvorenaPoljaTest = 0
     if(!deset.includes(kocka) && document.querySelector('.kocka'+(kocka-10)).style.backgroundColor != 'lightseagreen'){
+      if(document.querySelector('.kocka'+(kocka-10)).style.backgroundColor == 'yellow'){
+        setFlags(flags => flags - 1)
+      }
       document.querySelector('.kocka'+(kocka-10)).style.cssText = 'color: white; background-color: lightseagreen'
       otvorenaPoljaTest = otvorenaPoljaTest + 1
       if(document.querySelector('.kocka'+(kocka-10)).innerHTML == '0'){
@@ -58,6 +61,9 @@ function App() {
       }
     }
     if(kocka < 90 && document.querySelector('.kocka'+(kocka+10)).style.backgroundColor != 'lightseagreen'){
+      if(document.querySelector('.kocka'+(kocka+10)).style.backgroundColor == 'yellow'){
+        setFlags(flags => flags - 1)
+      }
       document.querySelector('.kocka'+(kocka+10)).style.cssText = 'color: white; background-color: lightseagreen'
       otvorenaPoljaTest = otvorenaPoljaTest + 1
       if(document.querySelector('.kocka'+(kocka+10)).innerHTML == '0'){
@@ -65,6 +71,9 @@ function App() {
       }
     }
     if(!svakiPrvi.includes(kocka) && document.querySelector('.kocka'+(kocka-1)).style.backgroundColor != 'lightseagreen'){
+      if(document.querySelector('.kocka'+(kocka-1)).style.backgroundColor == 'yellow'){
+        setFlags(flags => flags - 1)
+      }
       document.querySelector('.kocka'+(kocka-1)).style.cssText = 'color: white; background-color: lightseagreen'
       otvorenaPoljaTest = otvorenaPoljaTest + 1
       if(document.querySelector('.kocka'+(kocka-1)).innerHTML == '0'){
@@ -72,6 +81,9 @@ function App() {
       }
     }
     if(!svakiDeseti.includes(kocka) && document.querySelector('.kocka'+(kocka+1)).style.backgroundColor != 'lightseagreen'){
+      if(document.querySelector('.kocka'+(kocka+1)).style.backgroundColor == 'yellow'){
+        setFlags(flags => flags - 1)
+      }
       document.querySelector('.kocka'+(kocka+1)).style.cssText = 'color: white; background-color: lightseagreen'
       otvorenaPoljaTest = otvorenaPoljaTest + 1
       if(document.querySelector('.kocka'+(kocka+1)).innerHTML == '0'){
@@ -79,6 +91,9 @@ function App() {
       }
     }
     if(!svakiPrvi.includes(kocka) && kocka < 92 && document.querySelector('.kocka'+(kocka+9)).style.backgroundColor != 'lightseagreen'){
+      if(document.querySelector('.kocka'+(kocka+9)).style.backgroundColor == 'yellow'){
+        setFlags(flags => flags - 1)
+      }
       document.querySelector('.kocka'+(kocka+9)).style.cssText = 'color: white; background-color: lightseagreen'
       otvorenaPoljaTest = otvorenaPoljaTest + 1
       if(document.querySelector('.kocka'+(kocka+9)).innerHTML == '0'){
@@ -86,6 +101,9 @@ function App() {
       }
     }
     if(!svakiDeseti.includes(kocka) && kocka < 90 && document.querySelector('.kocka'+(kocka+11)).style.backgroundColor != 'lightseagreen'){
+      if(document.querySelector('.kocka'+(kocka+11)).style.backgroundColor == 'yellow'){
+        setFlags(flags => flags - 1)
+      }
       document.querySelector('.kocka'+(kocka+11)).style.cssText = 'color: white; background-color: lightseagreen'
       otvorenaPoljaTest = otvorenaPoljaTest + 1
       if(document.querySelector('.kocka'+(kocka+11)).innerHTML == '0'){
@@ -93,6 +111,9 @@ function App() {
       }
     }
     if(!svakiDeseti.includes(kocka) && !deset.includes(kocka) && document.querySelector('.kocka'+(kocka-9)).style.backgroundColor != 'lightseagreen'){
+      if(document.querySelector('.kocka'+(kocka-9)).style.backgroundColor == 'yellow'){
+        setFlags(flags => flags - 1)
+      }
       document.querySelector('.kocka'+(kocka-9)).style.cssText = 'color: white; background-color: lightseagreen'
       otvorenaPoljaTest = otvorenaPoljaTest + 1
       if(document.querySelector('.kocka'+(kocka-9)).innerHTML == '0'){
@@ -100,6 +121,9 @@ function App() {
       }
     }
     if(!svakiPrvi.includes(kocka) && !deset.includes(kocka) && document.querySelector('.kocka'+(kocka-11)).style.backgroundColor != 'lightseagreen'){
+      if(document.querySelector('.kocka'+(kocka-11)).style.backgroundColor == 'yellow'){
+        setFlags(flags => flags - 1)
+      }
       document.querySelector('.kocka'+(kocka-11)).style.cssText = 'color: white; background-color: lightseagreen'
       otvorenaPoljaTest = otvorenaPoljaTest + 1
       if(document.querySelector('.kocka'+(kocka-11)).innerHTML == '0'){
@@ -107,9 +131,6 @@ function App() {
       }
     }
     setOtvorenaPolja(otvorenaPolja => otvorenaPolja + otvorenaPoljaTest)
-    setTimeout(() => {
-      checkFinished()
-    }, 500);
   }
   
   useEffect(()=>{
@@ -133,7 +154,7 @@ function App() {
       <div ref={restartRef} className="restart">
         <button onClick={()=>{window.location.reload()}}>Restart</button>
         <p className='flags'>Flags: <span>{flags}</span></p>
-        <p className='openFields'>Opened fields: <span>{otvorenaPolja}</span></p>
+        <p className='openFields'>Opened fields: <span>{otvorenaPolja}</span>/90</p>
       </div>
       <div ref={gridRef} className="grid">
         {sto.map(kocka => {
