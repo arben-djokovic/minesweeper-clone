@@ -150,9 +150,9 @@ function App() {
                 e.target.style.cssText = 'background-color: yellow'
               }
             }} onClick={(e)=>{
-              setPopped(popped => popped + 1)
               if(e.target.style.backgroundColor != 'yellow' && e.target.style.backgroundColor != 'red'){
                 e.target.style.cssText += 'background-color: red !important'
+                setPopped(popped => popped + 1)
                 setTimeout(() => {
                   toast.error('Ohh no! There was a bomb !!!')
                 }, 200);
